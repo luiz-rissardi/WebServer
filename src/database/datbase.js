@@ -11,7 +11,7 @@ class PostGres{
             const conection = await this.#Table.connect();
             return  conection;
         } catch (error) {
-            return "não foi possivel conectar no banco"
+            return error
         }
     }
 }
