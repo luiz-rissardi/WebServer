@@ -3,8 +3,9 @@ import express, { Router, json } from "express"
 import Limit from "express-rate-limit"
 import http from "http"
 import cors from "cors"
+import dotenv from "dotenv"
 import pkg from "pg"
-const { Pool } = pkg
+const { Pool,Client } = pkg
 
 //src
 import { routes } from "./src/routes/routes.js"
@@ -25,9 +26,10 @@ const RateLimit = Limit({
 const client = new Pool({
     user: "postgres",
     password: "13012006",
-    port: 5050,
+    port: 50590,
     database: "userChat",
 })
+
 
 class App {
     #Application;
@@ -51,7 +53,12 @@ class App {
 }
 
 async function init() {
-    const database = new PostGres(client);
+    dotenv.config()
+    const conectionstring = 'postgres://postgres:13012006@web-server-lake.vercel.app:5050/userChat'
+    const pool = new Pool({
+        connectionString:conectionstring
+    })
+    const database = new PostGres(pool);
     const controller = new CrudController(await database.Conection());
     const routers = new routes(controller).CreateRoutes();
     const app = new App(exp, routers);
