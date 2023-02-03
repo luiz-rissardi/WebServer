@@ -9,7 +9,7 @@ class CrudController {
     Select(req,res){
         const date = new Date()
         res.json({
-            date
+            data:this.database
         })
     }
 }
