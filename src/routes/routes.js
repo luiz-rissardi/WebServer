@@ -1,13 +1,21 @@
  import { Router } from "express";
 
- const routes = Router()
+ class routes {
+   #controller;
+   Routers;
+   constructor(controller){
+      this.#controller = controller;
+      this.Routers = Router()
+   }
 
- routes.route("/user").get((req,res)=>{
-    const date = new Date()
-    res.send({
-        date
-    })
- })
+   CreateRoutes(){
+      this.Routers.route("/user").get((req,res)=>{
+         this.#controller.Select(req,res)
+      })
+
+      return this.Routers
+   }
+ }
 
  export {
     routes
