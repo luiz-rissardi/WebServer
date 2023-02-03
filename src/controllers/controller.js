@@ -14,6 +14,7 @@ class CrudController {
                     err
                 })
             }else{
+                console.log("dados pegos com sucesso")
                 res.send({
                     dados
                 })

@@ -9,8 +9,10 @@ class PostGres{
     async Conection(){
         try {
             const conection = await this.#Table.connect();
+            console.log("banco conectado com sucesso")
             return  conection;
         } catch (error) {
+            console.log("não foi possivel conectar no banco")
             return "não foi possivel conectar no banco"
         }
     }
