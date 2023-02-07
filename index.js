@@ -5,7 +5,7 @@ import http from "http"
 import cors from "cors"
 import dotenv from "dotenv"
 import pkg from "pg"
-const { Pool } = pkg
+const { Pool,Client } = pkg
 
 //src
 import { routes } from "./src/routes/routes.js"
@@ -22,6 +22,12 @@ const RateLimit = Limit({
     standardHeaders: true,
     legacyHeaders: false,
 });
+
+const conectsrting = "postgresql://postgres:13012006@localhost:5050/userChat"
+
+const client2 = new Pool({
+    connectionString:conectsrting
+})
 
 const client = new Pool({
     user: "postgres",
@@ -55,7 +61,8 @@ class App {
 
 async function init() {
     dotenv.config()
-    const database = new PostGres(client);
+  
+    const database = new PostGres(client2);
     const table = await database.Conection();
     const controller = new CrudController(table);
     const routers = new routes(controller).CreateRoutes();
