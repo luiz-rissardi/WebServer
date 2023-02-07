@@ -7,8 +7,8 @@ class CrudController {
     }
 
     Select(req,res){
-        this.database.query("select * from conversa2",(err,data)=>{
-            res.json(data.rows)
+        res.json({
+            date:new Date()
         })
     }
 }
