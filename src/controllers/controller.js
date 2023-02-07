@@ -7,9 +7,8 @@ class CrudController {
     }
 
     Select(req,res){
-        const date = new Date()
-        res.json({
-            data:this.database
+        this.database.query("select * from conversa2",(err,data)=>{
+            res.json(data.rows)
         })
     }
 }
