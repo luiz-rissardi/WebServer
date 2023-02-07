@@ -47,7 +47,7 @@ class App {
         this.#config.use(cors())
         this.#config.use("/api", RateLimit)
         this.#config.use("/api", this.#Routes);
-        this.#Application.listen(3030, () => {
+        this.#Application.listen(process.env.PORT || 3030, () => {
             console.log("server logado")
         });
     }
